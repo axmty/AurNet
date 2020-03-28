@@ -23,11 +23,19 @@ namespace AurNet.Command
             );
         }
 
+        public static bool IsVerbose(string[] args)
+        {
+            var parser = Parser.Default.ParseArguments<VerboseOptions>(args);
+            
+            return parser.MapResult(
+                options => options.IsVerbose,
+                _ => false
+            );
+        }
+
         private static async Task<int> Search(SearchOptions options)
         {
             var result = await AurHttpClient.Search(options.Arg, options.Field);
-
-            System.Console.WriteLine(result.Substring(0, 10));
 
             return 0;
         }

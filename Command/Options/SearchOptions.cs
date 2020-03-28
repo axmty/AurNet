@@ -4,7 +4,7 @@ using CommandLine;
 namespace AurNet.Command
 {
     [Verb("search")]
-    public class SearchOptions : BaseOptions
+    public class SearchOptions
     {
         [Value(0, Required = true)]
         public string Arg { get; set; }

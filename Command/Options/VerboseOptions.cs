@@ -2,9 +2,9 @@ using CommandLine;
 
 namespace AurNet.Command
 {
-    public class BaseOptions
+    public class VerboseOptions
     {
         [Option('v')]
-        public bool Verbose { get; set; }
+        public bool IsVerbose { get; set; }
     }
 }
