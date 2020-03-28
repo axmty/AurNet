@@ -9,15 +9,17 @@ namespace AurNet.Http
 
         public async Task<string> Search(string arg, SearchField searchField)
         {
-            var url = (new SearchTypeUrlBuilder(arg, searchField)).Build();
-            var response = await Client.GetAsync(url);
-
-            return await response.Content.ReadAsStringAsync();
+            return await this.Call(new SearchTypeUrlBuilder(arg, searchField));
         }
 
         public async Task<string> Info(string[] args)
         {
-            var url = (new InfoTypeUrlBuilder(args)).Build();
+            return await this.Call(new InfoTypeUrlBuilder(args));
+        }
+
+        private async Task<string> Call(ClientUrlBuilder urlBuilder)
+        {
+            var url = urlBuilder.Build();
             var response = await Client.GetAsync(url);
 
             return await response.Content.ReadAsStringAsync();
