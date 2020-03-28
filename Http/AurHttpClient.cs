@@ -14,5 +14,13 @@ namespace AurNet.Http
 
             return await response.Content.ReadAsStringAsync();
         }
+
+        public async Task<string> Info(string[] args)
+        {
+            var url = (new InfoTypeUrlBuilder(args)).Build();
+            var response = await Client.GetAsync(url);
+
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }

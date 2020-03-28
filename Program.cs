@@ -9,7 +9,7 @@ namespace AurNet
         public async static Task Main(string[] args)
         {
             var client = new AurHttpClient();
-            var response = await client.Search("foobar", SearchField.NameDesc);
+            var response = await client.Info(new string[] { "foobar", "aa" });
             Console.WriteLine(response);
         }
     }

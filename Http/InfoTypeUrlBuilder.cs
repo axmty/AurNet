@@ -1,16 +1,29 @@
-// public class InfoTypeUrlBuilder : ClientUrlBuilder
-// {
-//     private readonly InfoTypeQueryParams _queryParams;
+using System.Collections.Specialized;
 
-//     public InfoTypeUrlBuilder(InfoTypeQueryParams queryParams)
-//     {
-//         _queryParams = queryParams;
-//     }
+namespace AurNet.Http
+{
+    public class InfoTypeUrlBuilder : ClientUrlBuilder
+    {
+        private const string ArgsQueryParamKey = "arg[]";
 
-//     public override string TypeQueryParamValue => "info";
+        private readonly string[] _args;
 
-//     protected override NameValueCollection GetTypeQueryParams()
-//     {
+        public InfoTypeUrlBuilder(string[] args)
+        {
+            _args = args;
+        }
 
-//     }
-// }
+        public override string TypeQueryParamValue => "info";
+
+        protected override NameValueCollection GetTypeQueryParams()
+        {
+            var query = new NameValueCollection();
+            foreach (var arg in _args)
+            {
+                query.Add(ArgsQueryParamKey, arg);
+            }
+
+            return query;
+        }
+    }
+}
