@@ -22,7 +22,6 @@ namespace AurNet.Http
         {
             var url = urlBuilder.Build();
             var response = await Client.GetAsync(url);
-            System.Console.WriteLine(response);
 
             return await response.Content.ReadAsStringAsync();
         }
