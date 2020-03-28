@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
+using AurNet.Models;
 
 namespace AurNet.Http
 {
@@ -21,6 +22,7 @@ namespace AurNet.Http
         {
             var url = urlBuilder.Build();
             var response = await Client.GetAsync(url);
+            System.Console.WriteLine(response);
 
             return await response.Content.ReadAsStringAsync();
         }

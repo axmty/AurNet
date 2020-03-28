@@ -1,4 +1,4 @@
-namespace AurNet.Http
+namespace AurNet.Models
 {
     public enum SearchField
     {

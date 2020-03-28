@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using AurNet.Models;
 
 namespace AurNet.Http
 {
