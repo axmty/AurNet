@@ -9,13 +9,19 @@ namespace AurNet
     {
         public static async Task Main(string[] args)
         {
-            var serviceProvider = new ServiceCollection()
-                .AddLogging()
-                .BuildServiceProvider();
+            var serviceCollection = new ServiceCollection()
+                .AddLogging(builder => 
+                {
+                    builder.AddConsole();
+                });
 
-            
+            var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            await CommandRunner.Run(args);
+            var logger = serviceProvider
+                .GetService<ILoggerFactory>()
+                .CreateLogger<Program>();
+
+            await CommandRunner.RunAsync(args);
         }
     }
 }

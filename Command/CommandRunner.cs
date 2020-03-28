@@ -7,7 +7,7 @@ namespace AurNet.Command
 {
     public class CommandRunner
     {
-        public static async Task<int> Run(string[] args)
+        public static async Task<int> RunAsync(string[] args)
         {
             var verbParser = new Parser(settings =>
                 {
@@ -17,8 +17,8 @@ namespace AurNet.Command
                 .ParseArguments<SearchOptions, InfoOptions>(args);
 
             return await verbParser.MapResult(
-                async (SearchOptions options) => await Search(options),
-                async (InfoOptions options) => await Info(options),
+                async (SearchOptions options) => await SearchAsync(options),
+                async (InfoOptions options) => await InfoAsync(options),
                 errs => Task.FromResult(1)
             );
         }
@@ -33,16 +33,16 @@ namespace AurNet.Command
             );
         }
 
-        private static async Task<int> Search(SearchOptions options)
+        private static async Task<int> SearchAsync(SearchOptions options)
         {
-            var result = await AurHttpClient.Search(options.Arg, options.Field);
+            var result = await AurHttpClient.SearchAsync(options.Arg, options.Field);
 
             return 0;
         }
 
-        private static async Task<int> Info(InfoOptions options)
+        private static async Task<int> InfoAsync(InfoOptions options)
         {
-            var result = await AurHttpClient.Info(options.Packages.ToArray<string>());
+            var result = await AurHttpClient.InfoAsync(options.Packages.ToArray<string>());
 
             return 0;
         }

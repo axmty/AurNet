@@ -8,17 +8,17 @@ namespace AurNet.Http
     {
         private static readonly HttpClient Client = new HttpClient();
 
-        public static async Task<string> Search(string arg, SearchField searchField)
+        public static async Task<string> SearchAsync(string arg, SearchField searchField)
         {
-            return await Call(new SearchTypeUrlBuilder(arg, searchField));
+            return await CallAsync(new SearchTypeUrlBuilder(arg, searchField));
         }
 
-        public static async Task<string> Info(string[] packages)
+        public static async Task<string> InfoAsync(string[] packages)
         {
-            return await Call(new InfoTypeUrlBuilder(packages));
+            return await CallAsync(new InfoTypeUrlBuilder(packages));
         }
 
-        private static async Task<string> Call(ClientUrlBuilder urlBuilder)
+        private static async Task<string> CallAsync(ClientUrlBuilder urlBuilder)
         {
             var url = urlBuilder.Build();
             var response = await Client.GetAsync(url);
