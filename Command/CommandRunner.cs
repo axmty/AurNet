@@ -25,19 +25,16 @@ namespace AurNet.Command
 
         private static async Task<int> Search(SearchOptions options)
         {
-            await AurHttpClient.Search(options.Arg, options.Field);
+            var result = await AurHttpClient.Search(options.Arg, options.Field);
+
+            System.Console.WriteLine(result.Substring(0, 10));
 
             return 0;
         }
 
         private static async Task<int> Info(InfoOptions options)
         {
-            System.Console.WriteLine(options.Verbose);
-            foreach (var item in options.Packages)
-            {
-                System.Console.WriteLine(item);
-            }
-            await AurHttpClient.Info(options.Packages.ToArray<string>());
+            var result = await AurHttpClient.Info(options.Packages.ToArray<string>());
 
             return 0;
         }
