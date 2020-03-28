@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace AurNet.Http
 {
-    public class RpcClient
+    public class AurHttpClient
     {
         private static readonly HttpClient Client = new HttpClient();
 
