@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AurNet.Http;
 
 namespace AurNet
 {
@@ -7,7 +8,9 @@ namespace AurNet
     {
         public async static Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var client = new AurHttpClient();
+            var response = await client.Search("foobar", SearchField.NameDesc);
+            Console.WriteLine(response);
         }
     }
 }

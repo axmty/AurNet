@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
-namespace AurNet.AurHttpClient
+namespace AurNet.Http
 {
     public enum SearchField
     {
@@ -35,13 +35,13 @@ namespace AurNet.AurHttpClient
                 [SearchField.OptDepends] = "optdepends",
             };
 
-        private readonly SearchField _searchField;
         private readonly string _arg;
+        private readonly SearchField _searchField;
 
-        public SearchTypeUrlBuilder(SearchField searchField, string arg)
+        public SearchTypeUrlBuilder(string arg, SearchField searchField)
         {
-            _searchField = searchField;
             _arg = arg;
+            _searchField = searchField;
         }
 
         public override string TypeQueryParamValue => "search";
@@ -114,5 +114,13 @@ namespace AurNet.AurHttpClient
     public class AurHttpClient
     {
         private static readonly HttpClient Client = new HttpClient();
+
+        public async Task<string> Search(string arg, SearchField searchField)
+        {
+            var url = (new SearchTypeUrlBuilder(arg, searchField)).Build();
+            var response = await Client.GetAsync(url);
+
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }
