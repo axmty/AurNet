@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using AurNet.Http;
 using CommandLine;
 
-namespace AurNet.Command
+namespace AurNet.App
 {
-    public class CommandRunner
+    public class Runner : IRunner
     {
-        public static async Task<int> RunAsync(string[] args)
+        public async Task<int> RunAsync(string[] args)
         {
             var verbParser = new Parser(settings =>
                 {
@@ -23,7 +23,7 @@ namespace AurNet.Command
             );
         }
 
-        public static bool IsVerbose(string[] args)
+        public bool IsVerbose(string[] args)
         {
             var parser = Parser.Default.ParseArguments<VerboseOptions>(args);
             
