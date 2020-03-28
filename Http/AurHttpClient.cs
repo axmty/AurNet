@@ -4,21 +4,21 @@ using AurNet.Models;
 
 namespace AurNet.Http
 {
-    public class AurHttpClient
+    public static class AurHttpClient
     {
         private static readonly HttpClient Client = new HttpClient();
 
-        public async Task<string> Search(string arg, SearchField searchField)
+        public static async Task<string> Search(string arg, SearchField searchField)
         {
-            return await this.Call(new SearchTypeUrlBuilder(arg, searchField));
+            return await Call(new SearchTypeUrlBuilder(arg, searchField));
         }
 
-        public async Task<string> Info(string[] args)
+        public static async Task<string> Info(string[] args)
         {
-            return await this.Call(new InfoTypeUrlBuilder(args));
+            return await Call(new InfoTypeUrlBuilder(args));
         }
 
-        private async Task<string> Call(ClientUrlBuilder urlBuilder)
+        private static async Task<string> Call(ClientUrlBuilder urlBuilder)
         {
             var url = urlBuilder.Build();
             var response = await Client.GetAsync(url);

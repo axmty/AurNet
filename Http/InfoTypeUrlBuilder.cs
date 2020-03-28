@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.Specialized;
 
 namespace AurNet.Http
@@ -6,11 +7,11 @@ namespace AurNet.Http
     {
         private const string ArgsQueryParamKey = "arg[]";
 
-        private readonly string[] _args;
+        private readonly IEnumerable<string> _packages;
 
-        public InfoTypeUrlBuilder(string[] args)
+        public InfoTypeUrlBuilder(IEnumerable<string> packages)
         {
-            _args = args;
+            _packages = packages;
         }
 
         public override string TypeQueryParamValue => "info";
@@ -18,9 +19,9 @@ namespace AurNet.Http
         protected override NameValueCollection GetTypeQueryParams()
         {
             var query = new NameValueCollection();
-            foreach (var arg in _args)
+            foreach (var package in _packages)
             {
-                query.Add(ArgsQueryParamKey, arg);
+                query.Add(ArgsQueryParamKey, package);
             }
 
             return query;
