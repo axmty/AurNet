@@ -13,9 +13,9 @@ namespace AurNet.Http
             return await Call(new SearchTypeUrlBuilder(arg, searchField));
         }
 
-        public static async Task<string> Info(string[] args)
+        public static async Task<string> Info(string[] packages)
         {
-            return await Call(new InfoTypeUrlBuilder(args));
+            return await Call(new InfoTypeUrlBuilder(packages));
         }
 
         private static async Task<string> Call(ClientUrlBuilder urlBuilder)
