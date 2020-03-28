@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using AurNet.Command;
+﻿using System.Threading.Tasks;
 using AurNet.Http;
+using AurNet.Options;
 using CommandLine;
 
 namespace AurNet
