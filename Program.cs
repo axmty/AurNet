@@ -9,37 +9,40 @@ namespace AurNet
     {
         public static async Task Main(string[] args)
         {
-            var serviceCollection = new ServiceCollection();
+            var serviceCollection = BuildServiceCollection();
+            serviceCollection.AddLogging(ConfigureBaseLogging);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var runner = serviceProvider.GetService<IRunner>();
-            runner.IsVerbose(args);
 
-            var logger = serviceProvider
-                .GetService<ILoggerFactory>()
-                .CreateLogger<Program>();
-
-            logger.LogTrace("TRACE");
-            logger.LogDebug("DEBUG");
-            logger.LogInformation("INFORMATION");
-            logger.LogWarning("WARNING");
-            logger.LogError("ERROR");
-            logger.LogCritical("CRITICAL");
+            var isVerbose = runner.IsVerbose(args);
+            if (isVerbose)
+            {
+                serviceCollection.AddLogging(ConfigureVerboseLogging);
+                serviceProvider = serviceCollection.BuildServiceProvider();
+            }
 
             await new Runner().RunAsync(args);
-
-            logger.LogTrace("TRACE");
-            logger.LogDebug("DEBUG");
-            logger.LogInformation("INFORMATION");
-            logger.LogWarning("WARNING");
-            logger.LogError("ERROR");
-            logger.LogCritical("CRITICAL");
         }
 
-        private static void ConfigureServices(IServiceCollection serviceCollection)
+        private static IServiceCollection BuildServiceCollection()
         {
-            serviceCollection.
-                AddLogging(builder => { builder.AddConsole(); });
+            var serviceCollection = new ServiceCollection();
+            serviceCollection
+                .AddSingleton<IRunner, Runner>();
+
+            return serviceCollection;
+        }
+
+        private static void ConfigureBaseLogging(ILoggingBuilder builder)
+        {
+            
+        }
+
+        private static void ConfigureVerboseLogging(ILoggingBuilder builder)
+        {
+            ConfigureBaseLogging(builder);
+            builder.AddConsole();
         }
     }
 }
