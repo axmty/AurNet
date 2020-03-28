@@ -8,8 +8,8 @@ namespace AurNet
     {
         public async static Task Main(string[] args)
         {
-            var client = new AurHttpClient();
-            var response = await client.Info(new string[] { "foobar", "aa" });
+            var client = new RpcClient();
+            var response = await client.Search("foobar", SearchField.NameDesc);
             Console.WriteLine(response);
         }
     }
