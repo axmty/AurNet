@@ -3,6 +3,9 @@ using Microsoft.Extensions.Logging;
 
 namespace AurNet.Logging.Loggers
 {
+    /// <summary>
+    /// Logger that logs into a file.
+    /// </summary>
     public class FileLogger : ILogger
     {
         public IDisposable BeginScope<TState>(TState state)

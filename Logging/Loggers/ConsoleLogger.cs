@@ -3,6 +3,9 @@ using Microsoft.Extensions.Logging;
 
 namespace AurNet.Logging.Loggers
 {
+    /// <summary>
+    /// Logger that logs into the console.
+    /// </summary>
     public class ConsoleLogger : ILogger
     {
         public IDisposable BeginScope<TState>(TState state)

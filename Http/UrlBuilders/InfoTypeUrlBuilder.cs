@@ -3,12 +3,19 @@ using System.Collections.Specialized;
 
 namespace AurNet.Http.UrlBuilders
 {
+    /// <summary>
+    /// Builder for 'info' service URL.
+    /// </summary>
     public class InfoTypeUrlBuilder : ClientUrlBuilder
     {
         private const string ArgsQueryParamKey = "arg[]";
 
         private readonly IEnumerable<string> _packages;
 
+        /// <summary>
+        /// Instanciate <see cref="InfoTypeUrlBuilder"/>.
+        /// </summary>
+        /// <param name="packages">Name of the packages to search for.</param>
         public InfoTypeUrlBuilder(IEnumerable<string> packages)
         {
             _packages = packages;

@@ -4,6 +4,9 @@ using System.Web;
 
 namespace AurNet.Http.UrlBuilders
 {
+    /// <summary>
+    /// Builder for the AUR API service URLs.
+    /// </summary>
     public abstract class ClientUrlBuilder
     {
         private const string BaseUrl = "https://aur.archlinux.org/rpc/";
@@ -15,6 +18,10 @@ namespace AurNet.Http.UrlBuilders
 
         protected abstract NameValueCollection GetTypeQueryParams();
 
+        /// <summary>
+        /// Build the service URL.
+        /// </summary>
+        /// <returns>The built service URL.</returns>
         public string Build()
         {
             var builder = new UriBuilder(BaseUrl)
