@@ -30,13 +30,15 @@ namespace AurNet.Http.UrlBuilders
             _searchField = searchField;
         }
 
-        public override string TypeQueryParamValue => "search";
+        protected override string TypeQueryParamValue => "search";
 
         protected override NameValueCollection GetTypeQueryParams()
         {
-            var query = new NameValueCollection();
-            query[SearchFieldQueryParamKey] = SearchFieldNames[_searchField];
-            query[ArgQueryParamKey] = _arg;
+            var query = new NameValueCollection
+            {
+                [SearchFieldQueryParamKey] = SearchFieldNames[_searchField],
+                [ArgQueryParamKey] = _arg
+            };
 
             return query;
         }

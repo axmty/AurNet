@@ -12,7 +12,6 @@ namespace AurNet.Logging.Providers
 
         public void Dispose()
         {
-
         }
     }
 }

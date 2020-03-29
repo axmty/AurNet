@@ -12,7 +12,6 @@ namespace AurNet
         public static async Task Main(string[] args)
         {
             var runner = BuildServices(ConfigureBaseLogging).GetService<IRunner>();
-
             var isVerbose = runner.IsVerbose(args);
             if (isVerbose)
             {

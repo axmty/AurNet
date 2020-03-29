@@ -14,7 +14,7 @@ namespace AurNet.Http.UrlBuilders
             _packages = packages;
         }
 
-        public override string TypeQueryParamValue => "info";
+        protected override string TypeQueryParamValue => "info";
 
         protected override NameValueCollection GetTypeQueryParams()
         {

@@ -6,7 +6,6 @@ namespace AurNet.Logging
     {
         public void Dispose()
         {
-
         }
     }
 }

@@ -11,14 +11,16 @@ namespace AurNet.Http.UrlBuilders
         private const string TypeQueryParamKey = "type";
         private const string VersionQueryParamKey = "v";
 
-        public abstract string TypeQueryParamValue { get; }
+        protected abstract string TypeQueryParamValue { get; }
 
         protected abstract NameValueCollection GetTypeQueryParams();
 
         public string Build()
         {
-            var builder = new UriBuilder(BaseUrl);
-            builder.Port = -1;
+            var builder = new UriBuilder(BaseUrl)
+            {
+                Port = -1
+            };
 
             var query = this.BuildBaseQueryParams(builder.Query);
             this.SetTypeQueryParams(query);
@@ -31,7 +33,7 @@ namespace AurNet.Http.UrlBuilders
         {
             var baseQuery = HttpUtility.ParseQueryString(query);
             baseQuery[VersionQueryParamKey] = Version.ToString();
-            baseQuery[TypeQueryParamKey] = TypeQueryParamValue;
+            baseQuery[TypeQueryParamKey] = this.TypeQueryParamValue;
 
             return baseQuery;
         }
