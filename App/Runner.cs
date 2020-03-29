@@ -49,14 +49,14 @@ namespace AurNet.App
 
         private static async Task<int> SearchAsync(SearchOptions options)
         {
-            var result = await AurHttpClient.SearchAsync(options.Arg, options.Field);
+            await AurHttpClient.SearchAsync(options.Arg, options.Field);
 
             return 0;
         }
 
         private static async Task<int> InfoAsync(InfoOptions options)
         {
-            var result = await AurHttpClient.InfoAsync(options.Packages.ToArray<string>());
+            await AurHttpClient.InfoAsync(options.Packages.ToArray());
 
             return 0;
         }
