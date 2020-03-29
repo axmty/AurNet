@@ -1,4 +1,4 @@
-﻿using AurNet.Models;
+using AurNet.Models;
 using CommandLine;
 
 namespace AurNet.App.Options

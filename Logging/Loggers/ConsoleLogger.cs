@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Extensions.Logging;
 
 namespace AurNet.Logging.Loggers
@@ -14,14 +14,14 @@ namespace AurNet.Logging.Loggers
         {
             return true;
         }
-        
+
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
             Console.ForegroundColor = GetLevelColor(logLevel, Console.ForegroundColor);
 
             var message = formatter(state, exception);
             Console.WriteLine(message);
-            
+
             Console.ResetColor();
         }
 

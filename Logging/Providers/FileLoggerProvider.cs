@@ -1,4 +1,4 @@
-﻿using AurNet.Logging.Loggers;
+using AurNet.Logging.Loggers;
 using Microsoft.Extensions.Logging;
 
 namespace AurNet.Logging.Providers

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using AurNet.App.Options;
 using AurNet.Http;
@@ -40,7 +40,7 @@ namespace AurNet.App
         public bool IsVerbose(string[] args)
         {
             var parser = Parser.Default.ParseArguments<VerboseOptions>(args);
-            
+
             return parser.MapResult(
                 options => options.IsVerbose,
                 _ => false
