@@ -11,18 +11,18 @@ namespace AurNet
     {
         public static async Task Main(string[] args)
         {
-            var runner = BuildServiceCollection(ConfigureBaseLogging).GetService<IRunner>();
+            var runner = BuildServices(ConfigureBaseLogging).GetService<IRunner>();
 
             var isVerbose = runner.IsVerbose(args);
             if (isVerbose)
             {
-                runner = BuildServiceCollection(ConfigureVerboseLogging).GetService<IRunner>();
+                runner = BuildServices(ConfigureVerboseLogging).GetService<IRunner>();
             }
 
             await runner.RunAsync(args);
         }
 
-        private static IServiceProvider BuildServiceCollection(Action<ILoggingBuilder> loggingConfig)
+        private static IServiceProvider BuildServices(Action<ILoggingBuilder> loggingConfig)
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection
