@@ -17,6 +17,11 @@ namespace AurNet.App
 
         public async Task<int> RunAsync(string[] args)
         {
+            _logger.LogInformation("INFORMATION");
+            _logger.LogWarning("WARNING");
+            _logger.LogError("ERROR");
+            _logger.LogCritical("CRITICAL");
+
             var verbParser = new Parser(settings =>
                 {
                     settings.CaseInsensitiveEnumValues = true;
