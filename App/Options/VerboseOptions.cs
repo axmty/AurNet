@@ -1,6 +1,6 @@
 using CommandLine;
 
-namespace AurNet.App
+namespace AurNet.App.Options
 {
     public class VerboseOptions
     {

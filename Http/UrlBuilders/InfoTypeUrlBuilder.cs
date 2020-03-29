@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace AurNet.Http
+namespace AurNet.Http.UrlBuilders
 {
     public class InfoTypeUrlBuilder : ClientUrlBuilder
     {

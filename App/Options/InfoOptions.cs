@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CommandLine;
 
-namespace AurNet.App
+namespace AurNet.App.Options
 {
     [Verb("info")]
     public class InfoOptions

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 
-namespace AurNet.Logging
+namespace AurNet.Logging.Loggers
 {
     public class FileLogger : ILogger
     {

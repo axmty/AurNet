@@ -2,7 +2,7 @@ using System;
 using System.Collections.Specialized;
 using System.Web;
 
-namespace AurNet.Http
+namespace AurNet.Http.UrlBuilders
 {
     public abstract class ClientUrlBuilder
     {

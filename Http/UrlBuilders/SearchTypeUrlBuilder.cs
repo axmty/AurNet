@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using AurNet.Models;
 
-namespace AurNet.Http
+namespace AurNet.Http.UrlBuilders
 {
     public class SearchTypeUrlBuilder : ClientUrlBuilder
     {

@@ -1,7 +1,7 @@
 ﻿using AurNet.Models;
 using CommandLine;
 
-namespace AurNet.App
+namespace AurNet.App.Options
 {
     [Verb("search")]
     public class SearchOptions

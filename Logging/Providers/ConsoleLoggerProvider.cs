@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AurNet.Logging.Loggers;
+using Microsoft.Extensions.Logging;
 
-namespace AurNet.Logging
+namespace AurNet.Logging.Providers
 {
     public class ConsoleLoggerProvider : ILoggerProvider
     {
