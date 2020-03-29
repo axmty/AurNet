@@ -17,7 +17,7 @@ namespace AurNet.Logging
         
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            Console.ForegroundColor = ColorFromLogLevel(logLevel);
+            Console.ForegroundColor = GetLevelColor(logLevel, Console.ForegroundColor);
 
             var message = formatter(state, exception);
             Console.WriteLine(message);
@@ -25,14 +25,14 @@ namespace AurNet.Logging
             Console.ResetColor();
         }
 
-        private ConsoleColor ColorFromLogLevel(LogLevel logLevel)
+        private ConsoleColor GetLevelColor(LogLevel logLevel, ConsoleColor defaultColor)
         {
             return logLevel switch
             {
                 LogLevel.Warning => ConsoleColor.Yellow,
                 LogLevel.Error => ConsoleColor.Red,
                 LogLevel.Critical => ConsoleColor.DarkRed,
-                _ => ConsoleColor.White,
+                _ => defaultColor,
             };
         }
     }
