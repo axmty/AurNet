@@ -2,11 +2,19 @@
 using System.Threading.Tasks;
 using AurNet.Http;
 using CommandLine;
+using Microsoft.Extensions.Logging;
 
 namespace AurNet.App
 {
     public class Runner : IRunner
     {
+        private readonly ILogger<Runner> _logger;
+
+        public Runner(ILogger<Runner> logger)
+        {
+            _logger = logger;
+        }
+
         public async Task<int> RunAsync(string[] args)
         {
             var verbParser = new Parser(settings =>
