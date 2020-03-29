@@ -6,7 +6,7 @@ namespace AurNet.Logging
     {
         public ILogger CreateLogger(string categoryName)
         {
-            return new FileLogger(categoryName);
+            return new FileLogger();
         }
 
         public void Dispose()

@@ -5,13 +5,6 @@ namespace AurNet.Logging
 {
     public class ConsoleLogger : ILogger
     {
-        private readonly string _categoryName;
-
-        public ConsoleLogger(string categoryName)
-        {
-            _categoryName = categoryName;
-        }
-
         public IDisposable BeginScope<TState>(TState state)
         {
             return new VoidDisposable();
