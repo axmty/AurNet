@@ -6,12 +6,39 @@ namespace AurNet.Models
     /// </summary>
     public enum SearchField
     {
+        /// <summary>
+        /// Search by name.
+        /// </summary>
         Name,
+
+        /// <summary>
+        /// Search by name and description.
+        /// </summary>
         NameDesc,
+
+        /// <summary>
+        /// Search by maintainer.
+        /// </summary>
         Maintainer,
+
+        /// <summary>
+        /// Search packages that depend on...
+        /// </summary>
         Depends,
+
+        /// <summary>
+        /// Search packages that makedepend on...
+        /// </summary>
         MakeDepends,
+
+        /// <summary>
+        /// Search packages that optdepend on...
+        /// </summary>
         OptDepends,
+
+        /// <summary>
+        /// Search packages that checkdepend on...
+        /// </summary>
         CheckDepends,
     }
 }
