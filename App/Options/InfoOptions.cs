@@ -10,7 +10,7 @@ namespace AurNet.App.Options
     public class InfoOptions
     {
         /// <summary>
-        /// Name of the packages to get information from.
+        /// Name of the packages to get information of.
         /// </summary>
         [Value(0, Min = 1)]
         public IEnumerable<string> Packages { get; set; }
