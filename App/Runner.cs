@@ -7,15 +7,23 @@ using Microsoft.Extensions.Logging;
 
 namespace AurNet.App
 {
+    /// <summary>
+    /// Implementation of <see cref="IRunner"/>.
+    /// </summary>
     public class Runner : IRunner
     {
         private readonly ILogger<Runner> _logger;
 
+        /// <summary>
+        /// Instanciate <see cref="Runner"/>.
+        /// </summary>
+        /// <param name="logger">Used for logging.</param>
         public Runner(ILogger<Runner> logger)
         {
             _logger = logger;
         }
 
+        /// <inheritdoc/>
         public async Task<int> RunAsync(string[] args)
         {
             var verbParser = new Parser(settings =>
@@ -32,6 +40,7 @@ namespace AurNet.App
             );
         }
 
+        /// <inheritdoc/>
         public bool IsVerbose(string[] args)
         {
             var parser = Parser.Default.ParseArguments<VerboseOptions>(args);
