@@ -15,7 +15,7 @@ namespace AurNet.Http.UrlBuilders
         /// <summary>
         /// Instanciate <see cref="InfoTypeUrlBuilder"/>.
         /// </summary>
-        /// <param name="packages">Name of the packages to search for.</param>
+        /// <param name="packages">Name of the packages to get information from.</param>
         public InfoTypeUrlBuilder(IEnumerable<string> packages)
         {
             _packages = packages;
