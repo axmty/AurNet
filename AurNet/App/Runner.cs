@@ -27,11 +27,10 @@ namespace AurNet.App
         public async Task<int> RunAsync(string[] args)
         {
             var verbParser = new Parser(settings =>
-                {
-                    settings.CaseInsensitiveEnumValues = true;
-                    settings.IgnoreUnknownArguments = true;
-                })
-                .ParseArguments<SearchOptions, InfoOptions>(args);
+            {
+                settings.CaseInsensitiveEnumValues = true;
+                settings.IgnoreUnknownArguments = true;
+            }).ParseArguments<SearchOptions, InfoOptions>(args);
 
             return await verbParser.MapResult(
                 async (SearchOptions options) => await SearchAsync(options),
