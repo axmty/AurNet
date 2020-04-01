@@ -26,7 +26,8 @@ namespace AurNet
             var serviceCollection = new ServiceCollection();
             serviceCollection
                 .AddSingleton<IRunner, Runner>()
-                .AddLogging(loggingConfig);
+                .AddLogging(loggingConfig)
+                .AddHttpClient();
 
             return serviceCollection.BuildServiceProvider();
         }
