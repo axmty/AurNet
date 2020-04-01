@@ -12,14 +12,19 @@ namespace AurNet.App
     /// </summary>
     public class Runner : IRunner
     {
+        private readonly IAurHttpClient _aurHttpClient;
         private readonly ILogger<Runner> _logger;
 
         /// <summary>
         /// Instanciate <see cref="Runner"/>.
         /// </summary>
+        /// <param name="aurHttpClient">Used to perform calls to AUR APIs.</param>
         /// <param name="logger">Used for logging.</param>
-        public Runner(ILogger<Runner> logger)
+        public Runner(
+            IAurHttpClient aurHttpClient,
+            ILogger<Runner> logger)
         {
+            _aurHttpClient = aurHttpClient;
             _logger = logger;
         }
 
@@ -39,7 +44,7 @@ namespace AurNet.App
             );
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc/>IAurHttpClient
         public bool IsVerbose(string[] args)
         {
             var parser = Parser.Default.ParseArguments<VerboseOptions>(args);
@@ -50,16 +55,16 @@ namespace AurNet.App
             );
         }
 
-        private static async Task<int> SearchAsync(SearchOptions options)
+        private async Task<int> SearchAsync(SearchOptions options)
         {
-            await AurHttpClient.SearchAsync(options.Arg, options.Field);
+            await _aurHttpClient.SearchAsync(options.Arg, options.Field);
 
             return 0;
         }
 
-        private static async Task<int> InfoAsync(InfoOptions options)
+        private async Task<int> InfoAsync(InfoOptions options)
         {
-            await AurHttpClient.InfoAsync(options.Packages.ToArray());
+            await _aurHttpClient.InfoAsync(options.Packages.ToArray());
 
             return 0;
         }
