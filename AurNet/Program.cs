@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using AurNet.App;
+using AurNet.Http;
 using AurNet.Logging.Providers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,6 +26,7 @@ namespace AurNet
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection
+                .AddSingleton<IAurHttpClient, AurHttpClient>()
                 .AddSingleton<IRunner, Runner>()
                 .AddLogging(loggingConfig)
                 .AddHttpClient();

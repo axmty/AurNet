@@ -8,7 +8,7 @@ namespace AurNet.Http
     /// <summary>
     /// Implementation of <see cref="IAurHttpClient"/>.
     /// </summary>
-    public class AurHttpClient
+    public class AurHttpClient : IAurHttpClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
