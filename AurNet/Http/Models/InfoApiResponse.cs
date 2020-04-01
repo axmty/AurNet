@@ -1,7 +1,6 @@
 namespace AurNet.Http
 {
-    public class InfoApiResponse : ApiResponse<InfoResult>
+    public class InfoApiResponse : ApiSuccessResponse<InfoResult>
     {
-        public override ApiResponseType Type => ApiResponseType.MultiInfo;
     }
 }

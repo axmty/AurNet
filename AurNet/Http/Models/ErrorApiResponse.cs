@@ -1,9 +1,7 @@
 namespace AurNet.Http
 {
-    public class ErrorApiResponse : ApiResponse<int>
+    public class ErrorApiResponse : ApiResponse
     {
-        public override ApiResponseType Type => ApiResponseType.Error;
-
         public string Error { get; set; }
     }
 }
