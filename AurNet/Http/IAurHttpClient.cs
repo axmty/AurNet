@@ -13,14 +13,14 @@ namespace AurNet.Http
         /// </summary>
         /// <param name="arg">Keyword to search for.</param>
         /// <param name="searchField">Field by which the search is performed.</param>
-        /// <returns>The search response object.</returns>
-        Task<SearchApiResponse> SearchAsync(string arg, SearchField searchField);
+        /// <returns>An object that wraps the 'search' success return or an error.</returns>
+        Task<ApiResponseWrapper<SearchApiResponse>> SearchAsync(string arg, SearchField searchField);
 
         /// <summary>
         /// Call the 'info' AUR API.
         /// </summary>
         /// <param name="packages">Name of the packages to search for.</param>
-        /// <returns>The info response object.</returns>
-        Task<InfoApiResponse> InfoAsync(string[] packages);
+        /// <returns>An object that wraps the 'info' success return or an error.</returns>
+        Task<ApiResponseWrapper<InfoApiResponse>> InfoAsync(string[] packages);
     }
 }

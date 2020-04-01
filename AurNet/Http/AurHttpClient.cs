@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace AurNet.Http
     /// </summary>
     public class AurHttpClient : IAurHttpClient
     {
+        private const string ErrorType = "error";
         private readonly IHttpClientFactory _httpClientFactory;
 
         public AurHttpClient(IHttpClientFactory httpClientFactory)
@@ -17,24 +19,35 @@ namespace AurNet.Http
         }
 
         /// <inheritdoc/>
-        public Task<SearchApiResponse> SearchAsync(string arg, SearchField searchField)
+        public Task<ApiResponseWrapper<SearchApiResponse>> SearchAsync(string arg, SearchField searchField)
         {
             return this.CallAsync<SearchApiResponse>(new SearchTypeUrlBuilder(arg, searchField));
         }
 
         /// <inheritdoc/>
-        public Task<InfoApiResponse> InfoAsync(string[] packages)
+        public Task<ApiResponseWrapper<InfoApiResponse>> InfoAsync(string[] packages)
         {
             return this.CallAsync<InfoApiResponse>(new InfoTypeUrlBuilder(packages));
         }
 
-        private async Task<TResponse> CallAsync<TResponse>(ClientUrlBuilder urlBuilder)
+        private async Task<ApiResponseWrapper<TSuccessResponse>> CallAsync<TSuccessResponse>(
+            ClientUrlBuilder urlBuilder)
         {
             var url = urlBuilder.Build();
-            var response = await _httpClientFactory.CreateClient().GetAsync(url);
-            var raw = await response.Content.ReadAsStringAsync();
+            var client = _httpClientFactory.CreateClient();
 
-            return JsonSerializer.Deserialize<TResponse>(raw);
+            try
+            {
+                var message = await client.GetAsync(url);
+                var raw = await message.Content.ReadAsStringAsync();
+                var parsed = JsonSerializer.Deserialize<TSuccessResponse>(raw);
+
+                return ApiResponseWrapper<TSuccessResponse>.FromSuccessResponse(parsed);
+            }
+            catch (Exception technicalException)
+            {
+                return ApiResponseWrapper<TSuccessResponse>.FromTechnicalException(technicalException);
+            }
         }
     }
 }

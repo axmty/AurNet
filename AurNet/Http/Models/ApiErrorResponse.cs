@@ -8,19 +8,25 @@ namespace AurNet.Http
     public class ApiErrorResponse : ApiResponse
     {
         /// <summary>
-        /// Error message containing the details of the error.
+        /// Message containing the details of a functional error.
         /// </summary>
-        public string FunctionalError { get; set; }
+        public string FunctionalErrorMessage { get; set; }
 
         /// <summary>
-        /// Exception thrown while using the HttpClient.
+        /// Exception representing a technical error, like an exception raised while using an HttpClient.
         /// </summary>
-        public Exception HttpClientException { get; set; }
+        public Exception TechnicalException { get; set; }
 
         /// <summary>
         /// Tells whether this error is a functional one.
         /// </summary>
         /// <value>True if and only if it is a functional error.</value>
-        public bool IsFunctional => this.FunctionalError != null;
+        public bool IsFunctional => this.FunctionalErrorMessage != null;
+
+        /// <summary>
+        /// Tells whether this error is a technical one.
+        /// </summary>
+        /// <value>True if and only if it is a technical error.</value>
+        public bool IsTechnical => !this.IsFunctional;
     }
 }
