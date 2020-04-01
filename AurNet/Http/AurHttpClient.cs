@@ -19,13 +19,13 @@ namespace AurNet.Http
         /// <inheritdoc/>
         public Task<SearchApiResponse> SearchAsync(string arg, SearchField searchField)
         {
-            return CallAsync<SearchApiResponse>(new SearchTypeUrlBuilder(arg, searchField));
+            return this.CallAsync<SearchApiResponse>(new SearchTypeUrlBuilder(arg, searchField));
         }
 
         /// <inheritdoc/>
         public Task<InfoApiResponse> InfoAsync(string[] packages)
         {
-            return CallAsync<InfoApiResponse>(new InfoTypeUrlBuilder(packages));
+            return this.CallAsync<InfoApiResponse>(new InfoTypeUrlBuilder(packages));
         }
 
         private async Task<TResponse> CallAsync<TResponse>(ClientUrlBuilder urlBuilder)
