@@ -44,7 +44,7 @@ namespace AurNet.App
             );
         }
 
-        /// <inheritdoc/>IAurHttpClient
+        /// <inheritdoc/>
         public bool IsVerbose(string[] args)
         {
             var parser = Parser.Default.ParseArguments<VerboseOptions>(args);
