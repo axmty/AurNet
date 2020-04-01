@@ -1,3 +1,5 @@
+using System;
+
 namespace AurNet.Http
 {
     /// <summary>
@@ -8,6 +10,17 @@ namespace AurNet.Http
         /// <summary>
         /// Error message containing the details of the error.
         /// </summary>
-        public string Error { get; set; }
+        public string FunctionalError { get; set; }
+
+        /// <summary>
+        /// Exception thrown while using the HttpClient.
+        /// </summary>
+        public Exception HttpClientException { get; set; }
+
+        /// <summary>
+        /// Tells whether this error is a functional one.
+        /// </summary>
+        /// <value>True if and only if it is a functional error.</value>
+        public bool IsFunctional => this.FunctionalError != null;
     }
 }
