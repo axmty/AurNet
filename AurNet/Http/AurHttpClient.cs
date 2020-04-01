@@ -17,24 +17,24 @@ namespace AurNet.Http
         }
 
         /// <inheritdoc/>
-        public async Task<SearchApiResponse> SearchAsync(string arg, SearchField searchField)
+        public Task<SearchApiResponse> SearchAsync(string arg, SearchField searchField)
         {
-            return await CallAsync<SearchApiResponse>(new SearchTypeUrlBuilder(arg, searchField));
+            return CallAsync<SearchApiResponse>(new SearchTypeUrlBuilder(arg, searchField));
         }
 
         /// <inheritdoc/>
-        public async Task<InfoApiResponse> InfoAsync(string[] packages)
+        public Task<InfoApiResponse> InfoAsync(string[] packages)
         {
-            return await CallAsync<InfoApiResponse>(new InfoTypeUrlBuilder(packages));
+            return CallAsync<InfoApiResponse>(new InfoTypeUrlBuilder(packages));
         }
 
-        private async Task<TApiSuccessResponse> CallAsync<TApiSuccessResponse>(ClientUrlBuilder urlBuilder)
+        private async Task<TResponse> CallAsync<TResponse>(ClientUrlBuilder urlBuilder)
         {
             var url = urlBuilder.Build();
             var response = await _httpClientFactory.CreateClient().GetAsync(url);
             var raw = await response.Content.ReadAsStringAsync();
 
-            return JsonSerializer.Deserialize<TApiSuccessResponse>(raw);
+            return JsonSerializer.Deserialize<TResponse>(raw);
         }
     }
 }

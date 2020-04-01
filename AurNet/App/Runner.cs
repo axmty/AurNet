@@ -28,7 +28,7 @@ namespace AurNet.App
         }
 
         /// <inheritdoc/>
-        public async Task<int> RunAsync(string[] args)
+        public Task<int> RunAsync(string[] args)
         {
             var verbParser = new Parser(settings =>
             {
@@ -36,9 +36,9 @@ namespace AurNet.App
                 settings.IgnoreUnknownArguments = true;
             }).ParseArguments<SearchOptions, InfoOptions>(args);
 
-            return await verbParser.MapResult(
-                async (SearchOptions options) => await SearchAsync(options),
-                async (InfoOptions options) => await InfoAsync(options),
+            return verbParser.MapResult(
+                (SearchOptions options) => SearchAsync(options),
+                (InfoOptions options) => InfoAsync(options),
                 errs => Task.FromResult(1)
             );
         }
@@ -54,18 +54,18 @@ namespace AurNet.App
             );
         }
 
-        private async Task<int> SearchAsync(SearchOptions options)
+        private Task<int> SearchAsync(SearchOptions options)
         {
-            await _aurHttpClient.SearchAsync(options.Arg, options.Field);
+            _aurHttpClient.SearchAsync(options.Arg, options.Field);
 
-            return 0;
+            return Task.FromResult(0);
         }
 
-        private async Task<int> InfoAsync(InfoOptions options)
+        private Task<int> InfoAsync(InfoOptions options)
         {
-            await _aurHttpClient.InfoAsync(options.Packages.ToArray());
+            _aurHttpClient.InfoAsync(options.Packages.ToArray());
 
-            return 0;
+            return Task.FromResult(0);
         }
     }
 }
