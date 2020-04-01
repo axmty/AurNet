@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using CommandLine;
 
-namespace AurNet.App.Options
+namespace AurNet.App
 {
     /// <summary>
     /// Options for 'info' verb.

@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using AurNet.App;
 using AurNet.Http;
-using AurNet.Logging.Providers;
+using AurNet.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

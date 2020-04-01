@@ -1,7 +1,5 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using AurNet.Http.UrlBuilders;
-using AurNet.Models;
 
 namespace AurNet.Http
 {

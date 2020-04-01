@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace AurNet.Http.UrlBuilders
+namespace AurNet.Http
 {
     /// <summary>
     /// Builder for 'info' service URL.

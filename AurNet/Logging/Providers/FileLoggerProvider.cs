@@ -1,7 +1,6 @@
-using AurNet.Logging.Loggers;
 using Microsoft.Extensions.Logging;
 
-namespace AurNet.Logging.Providers
+namespace AurNet.Logging
 {
     /// <summary>
     /// Provider that allows to log into a file.

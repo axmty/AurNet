@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace AurNet.Logging.Loggers
+namespace AurNet.Logging
 {
     /// <summary>
     /// Logger that logs into the console.

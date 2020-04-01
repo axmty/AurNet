@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using AurNet.Models;
 
-namespace AurNet.Http.UrlBuilders
+namespace AurNet.Http
 {
     /// <summary>
     /// Builder for 'search' service URL.

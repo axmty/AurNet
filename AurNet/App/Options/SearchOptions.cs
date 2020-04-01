@@ -1,7 +1,7 @@
-using AurNet.Models;
+using AurNet.Http;
 using CommandLine;
 
-namespace AurNet.App.Options
+namespace AurNet.App
 {
     /// <summary>
     /// Options for 'search' verb.

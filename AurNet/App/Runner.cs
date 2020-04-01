@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using AurNet.App.Options;
 using AurNet.Http;
 using CommandLine;
 using Microsoft.Extensions.Logging;

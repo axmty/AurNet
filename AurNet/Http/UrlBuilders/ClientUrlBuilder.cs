@@ -2,7 +2,7 @@ using System;
 using System.Collections.Specialized;
 using System.Web;
 
-namespace AurNet.Http.UrlBuilders
+namespace AurNet.Http
 {
     /// <summary>
     /// Builder for the AUR API service URLs.

@@ -1,4 +1,4 @@
-namespace AurNet.Models
+namespace AurNet.Http
 {
     /// <summary>
     /// Fields by which a search can be performed when using the 'search' AUR API.

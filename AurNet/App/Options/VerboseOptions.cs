@@ -1,6 +1,6 @@
 using CommandLine;
 
-namespace AurNet.App.Options
+namespace AurNet.App
 {
     /// <summary>
     /// Verbose command line option.
