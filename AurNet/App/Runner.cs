@@ -54,18 +54,18 @@ namespace AurNet.App
             );
         }
 
-        private Task<int> SearchAsync(SearchOptions options)
+        private async Task<int> SearchAsync(SearchOptions options)
         {
-            _aurHttpClient.SearchAsync(options.Arg, options.Field);
+            await _aurHttpClient.SearchAsync(options.Arg, options.Field);
 
-            return Task.FromResult(0);
+            return 0;
         }
 
-        private Task<int> InfoAsync(InfoOptions options)
+        private async Task<int> InfoAsync(InfoOptions options)
         {
-            _aurHttpClient.InfoAsync(options.Packages.ToArray());
+            await _aurHttpClient.InfoAsync(options.Packages.ToArray());
 
-            return Task.FromResult(0);
+            return 0;
         }
     }
 }

@@ -39,7 +39,6 @@ namespace AurNet.Http
 
             try
             {
-
                 var message = await _httpClientFactory.CreateClient().GetAsync(url);
                 var raw = await message.Content.ReadAsStringAsync();
                 var errorMessage = this.FindError(raw);

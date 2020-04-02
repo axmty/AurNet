@@ -23,7 +23,7 @@ namespace AurNet.Http
         /// <summary>
         /// Returns true if and only if it is a success response.
         /// </summary>
-        public bool IsSuccess => this.ErrorResponse != null;
+        public bool IsSuccess => this.ErrorResponse == null;
 
         /// <summary>
         /// Returns true if and only if it is an error response.
