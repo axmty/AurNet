@@ -11,7 +11,25 @@ namespace AurNet.Tests.Http
     public class AurHttpClientTests
     {
         [Fact]
-        public async Task SearchAsync_ReturnsFunctionalErrorResponse_WhenApiResponseContainsErrorMessage()
+        public async Task SearchAsync_ReturnsSuccessApiResponseObject_WhenApiCallSucceeds()
+        {
+            var expectedApiResponse = $@"
+            {{
+                ""version"":5,
+                ""type"":""search"",
+                ""resultcount"":3,
+                ""results"":[],
+            }}";
+            var aurClient = new AurHttpClient(MockIHttpClientFactoryWithRawResponse(expectedApiResponse));
+
+            var responseWrapper = await aurClient.SearchAsync("", SearchField.NameDesc);
+
+            Assert.True(responseWrapper.IsSuccess);
+            Assert.Equal(3, responseWrapper.SuccessResponse.ResultCount);
+        }
+
+        [Fact]
+        public async Task SearchAsync_ReturnsFunctionalErrorResponseObject_WhenApiResponseContainsErrorMessage()
         {
             var expectedErrorMessage = "Incorrect by field specified.";
             var expectedApiResponse = $@"
@@ -32,7 +50,7 @@ namespace AurNet.Tests.Http
         }
 
         [Fact]
-        public async Task SearchAsync_ReturnsTechnicalErrorResponse_WhenExceptionIsRaisedWhenCallingApi()
+        public async Task SearchAsync_ReturnsTechnicalErrorResponseObject_WhenExceptionIsRaisedWhenCallingApi()
         {
             var raisedException = new HttpRequestException();
             var aurClient = new AurHttpClient(MockIHttpClientFactoryWithExceptionRaised(raisedException));
