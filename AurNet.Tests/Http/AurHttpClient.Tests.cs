@@ -13,21 +13,22 @@ namespace AurNet.Tests.Http
         [Fact]
         public async Task SearchAsync_ReturnsFunctionalErrorResponse_WhenApiResponseContainsErrorMessage()
         {
-            var expectedApiResponse = @"
-            {
+            var expectedErrorMessage = "Incorrect by field specified.";
+            var expectedApiResponse = $@"
+            {{
                 ""version"":5,
                 ""type"":""error"",
                 ""resultcount"":0,
                 ""results"":[],
-                ""error"":""Incorrect by field specified.""
-            }";
+                ""error"":""{expectedErrorMessage}""
+            }}";
             var aurClient = new AurHttpClient(MockIHttpClientFactoryWithRawResponse(expectedApiResponse));
 
             var responseWrapper = await aurClient.SearchAsync("", SearchField.NameDesc);
 
             Assert.True(responseWrapper.IsError);
             Assert.True(responseWrapper.ErrorResponse.IsFunctional);
-            Assert.Equal("Incorrect by field specified.", responseWrapper.ErrorResponse.FunctionalErrorMessage);
+            Assert.Equal(expectedErrorMessage, responseWrapper.ErrorResponse.FunctionalErrorMessage);
         }
 
         [Fact]
