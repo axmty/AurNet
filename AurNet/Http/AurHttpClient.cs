@@ -1,7 +1,8 @@
 using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace AurNet.Http
 {
@@ -10,7 +11,7 @@ namespace AurNet.Http
     /// </summary>
     public class AurHttpClient : IAurHttpClient
     {
-        private const string ErrorType = "error";
+        private const string JsonErrorKey = "error";
         private readonly IHttpClientFactory _httpClientFactory;
 
         public AurHttpClient(IHttpClientFactory httpClientFactory)
@@ -34,20 +35,35 @@ namespace AurNet.Http
             ClientUrlBuilder urlBuilder)
         {
             var url = urlBuilder.Build();
-            var client = _httpClientFactory.CreateClient();
+            ApiResponseWrapper<TSuccessResponse> responseWrapper;
 
             try
             {
-                var message = await client.GetAsync(url);
-                var raw = await message.Content.ReadAsStringAsync();
-                var parsed = JsonSerializer.Deserialize<TSuccessResponse>(raw);
 
-                return ApiResponseWrapper<TSuccessResponse>.FromSuccessResponse(parsed);
+                var message = await _httpClientFactory.CreateClient().GetAsync(url);
+                var raw = await message.Content.ReadAsStringAsync();
+                var errorMessage = this.FindError(raw);
+                if (errorMessage != null)
+                {
+                    responseWrapper = ApiResponseWrapper<TSuccessResponse>.FromFunctionalErrorMessage(errorMessage);
+                }
+
+                var parsed = JsonConvert.DeserializeObject<TSuccessResponse>(raw);
+                responseWrapper = ApiResponseWrapper<TSuccessResponse>.FromSuccessResponse(parsed);
             }
             catch (Exception technicalException)
             {
-                return ApiResponseWrapper<TSuccessResponse>.FromTechnicalException(technicalException);
+                responseWrapper = ApiResponseWrapper<TSuccessResponse>.FromTechnicalException(technicalException);
             }
+
+            return responseWrapper;
+        }
+
+        private string FindError(string raw)
+        {
+            var json = JObject.Parse(raw);
+
+            return (string)json[JsonErrorKey];
         }
     }
 }
