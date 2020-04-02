@@ -7,8 +7,6 @@ namespace AurNet.Logging
     /// </summary>
     public class VoidDisposable : IDisposable
     {
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }

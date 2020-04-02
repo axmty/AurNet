@@ -12,8 +12,6 @@ namespace AurNet.Logging
             return new ConsoleLogger();
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }
