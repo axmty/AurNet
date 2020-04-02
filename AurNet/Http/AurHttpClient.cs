@@ -12,6 +12,7 @@ namespace AurNet.Http
     public class AurHttpClient : IAurHttpClient
     {
         private const string JsonErrorKey = "error";
+
         private readonly IHttpClientFactory _httpClientFactory;
 
         public AurHttpClient(IHttpClientFactory httpClientFactory)
@@ -46,9 +47,11 @@ namespace AurNet.Http
                 {
                     responseWrapper = ApiResponseWrapper<TSuccessResponse>.FromFunctionalErrorMessage(errorMessage);
                 }
-
-                var parsed = JsonConvert.DeserializeObject<TSuccessResponse>(raw);
-                responseWrapper = ApiResponseWrapper<TSuccessResponse>.FromSuccessResponse(parsed);
+                else
+                {
+                    var parsed = JsonConvert.DeserializeObject<TSuccessResponse>(raw);
+                    responseWrapper = ApiResponseWrapper<TSuccessResponse>.FromSuccessResponse(parsed);
+                }
             }
             catch (Exception technicalException)
             {
