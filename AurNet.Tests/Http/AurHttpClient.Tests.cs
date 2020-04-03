@@ -18,7 +18,7 @@ namespace AurNet.Tests.Http
                 ""version"":5,
                 ""type"":""search"",
                 ""resultcount"":3,
-                ""results"":[],
+                ""results"":[]
             }}";
             var aurClient = new AurHttpClient(MockIHttpClientFactoryWithRawResponse(expectedApiResponse));
 
