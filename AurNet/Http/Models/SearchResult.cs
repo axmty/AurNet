@@ -19,5 +19,15 @@ namespace AurNet.Http
         /// Version of the package.
         /// </summary>
         public string Version { get; set; }
+
+        /// <summary>
+        /// Description of the package.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Number of the votes of the packages.
+        /// </summary>
+        public int NumVotes { get; set; }
     }
 }

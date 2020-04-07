@@ -56,7 +56,18 @@ namespace AurNet.App
 
         private async Task<int> SearchAsync(SearchOptions options)
         {
-            await _aurHttpClient.SearchAsync(options.Arg, options.Field);
+            var apiResult = await _aurHttpClient.SearchAsync(options.Arg, options.Field);
+
+            if (apiResult.IsError)
+            {
+                return 1;
+            }
+
+            System.Console.WriteLine($"There are {apiResult.SuccessResponse.Results.Count()} results for '{options.Arg}' (search by {options.Field}).");
+            foreach (var item in apiResult.SuccessResponse.Results)
+            {
+                System.Console.WriteLine($"{item.ID} {item.Name} \u2606 {item.NumVotes} {item.Description}");
+            }
 
             return 0;
         }
